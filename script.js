@@ -36,11 +36,18 @@ function playGame(){
         //console.log("Computer chose: ", comp_choice);
         playRound(hum_choice, comp_choice);
     }
-    if(humanScore < computerScore){
-        console.log('GAME OVER! Your score is  ')
+    while(humanScore == computerScore){
+        console.log(`SUDDEN DEATH!! \nOne more round!`)
+        let hum_choice = getHumanChoise();
+        let comp_choice = getComputerChoise();
+        playRound(hum_choice, comp_choice);
     }
-    console.log(humanScore);
-    console.log(computerScore);
+    if(humanScore < computerScore){
+        console.log(`GAME OVER! You lose! \nCompueter score: ${computerScore} vs Your score: ${humanScore}`)
+    }else if(humanScore > computerScore){
+        console.log(`GAME OVER! You Win! \nCompueter score: ${computerScore} vs Your score: ${humanScore}`)
+    }
+    
     
 
 
