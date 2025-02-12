@@ -1,12 +1,7 @@
-let humanScore = 0, computerScore = 0;
-console.log(humanScore);
-console.log(computerScore);
+
+playGame()
 
 
-let hum_choice = getHumanChoise();
-let comp_choice = getComputerChoise();
-console.log("Computer chose: ", comp_choice);
-playRound(hum_choice, comp_choice);
 
 function getComputerChoise(){
     let comp_choice =  Math.floor(Math.random()*3);
@@ -23,44 +18,70 @@ function getComputerChoise(){
 function getHumanChoise(){
  let hum_choice = prompt("Please choose rock, paper or scissors!");
     if(  hum_choice.toLocaleLowerCase() == "rock" || hum_choice.toLocaleLowerCase() == "paper" || hum_choice.toLocaleLowerCase() == "scissors" ){
-        console.log("You choose: ", hum_choice);
+        return hum_choice
+        //console.log("You choose: ", hum_choice);
     }else{
         console.log("Your choise was invalid. Please enter rock, paper or scissors!");
         getHumanChoise();
     }
     return hum_choice
 }
-function playRound(h, c){
-    /* Write draw as one line first*/
-    if(h.toLocaleLowerCase() == c.toLocaleLowerCase()){
-        console.log('Draw! Both chose', h);
+
+function playGame(){
+    let humanScore = 0, computerScore = 0;
+    
+    for(let i = 0; i<5; i++){
+        let hum_choice = getHumanChoise();
+        let comp_choice = getComputerChoise();
+        //console.log("Computer chose: ", comp_choice);
+        playRound(hum_choice, comp_choice);
     }
-    if(h.toLocaleLowerCase() == "rock"){
-        if(c.toLocaleLowerCase() == "paper"){
-            console.log("You lose! Paper beats Rock!");
-            computerScore ++;
-        }else if(c.toLocaleLowerCase() == "scissors"){
-            console.log("You win! Rock beats Scissors!");
-            humanScore ++;
+    if(humanScore < computerScore){
+        console.log('GAME OVER! Your score is  ')
+    }
+    console.log(humanScore);
+    console.log(computerScore);
+    
+
+
+    function playRound(h, c){
+        /* Write draw as one line first*/
+        if(h.toLocaleLowerCase() == c.toLocaleLowerCase()){
+            console.log('Draw! Both chose', h);
+            //hum_choice = getHumanChoise(); //maybe remove this!!!!??????????_________________________________________________________________________________________________
+            //comp_choice = getComputerChoise();
+            //playRound()
+            return
         }
-    }else if(h.toLocaleLowerCase() == "paper"){
-        if(c.toLocaleLowerCase() == "scissors"){
-            console.log("You lose! Scissors beats Paper!");
-            computerScore ++;
-        }else if(c.toLocaleLowerCase() == "rock"){
-            console.log("You win! Paper beats Rock!");
-            humanScore ++;
-        }
-    }else{ //h = scissors
-        if(c.toLocaleLowerCase() == "rock"){
-            console.log("You lose! Rock beats Scissors!");
-            computerScore ++;
-        }else if(c.toLocaleLowerCase() == "paper"){
-            console.log("You win! Scissors beats Paper!");
-            humanScore ++;
+        if(h.toLocaleLowerCase() == "rock"){
+            if(c.toLocaleLowerCase() == "paper"){
+                console.log("You lose! Paper beats Rock!");
+                computerScore ++;
+            }else if(c.toLocaleLowerCase() == "scissors"){
+                console.log("You win! Rock beats Scissors!");
+                humanScore ++;
+            }
+        }else if(h.toLocaleLowerCase() == "paper"){
+            if(c.toLocaleLowerCase() == "scissors"){
+                console.log("You lose! Scissors beats Paper!");
+                computerScore ++;
+            }else if(c.toLocaleLowerCase() == "rock"){
+                console.log("You win! Paper beats Rock!");
+                humanScore ++;
+            }
+        }else{ //h = scissors
+            if(c.toLocaleLowerCase() == "rock"){
+                console.log("You lose! Rock beats Scissors!");
+                computerScore ++;
+            }else if(c.toLocaleLowerCase() == "paper"){
+                console.log("You win! Scissors beats Paper!");
+                humanScore ++;
+            }
         }
     }
 }
+
+
 /*
     else if(h.toLocaleLowerCase() == "rock" && c.toLocaleLowerCase() == "paper"){
         console.log("You lose! Paper beats Rock!");
