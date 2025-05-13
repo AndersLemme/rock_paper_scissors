@@ -1,6 +1,17 @@
 
 //playGame()
-
+const rock = document.querySelector("#rock");
+const paper = document.querySelector("#paper");
+const scissors = document.querySelector("#scissors");
+rock.addEventListener( "click",() =>{
+    playRound("rock", getComputerChoise())
+});
+paper.addEventListener( "click", () => {
+    playRound("paper", getComputerChoise())
+});
+scissors.addEventListener("click", () => {
+    playRound("scissors", getComputerChoise())
+});
 
 
 function getComputerChoise(){
@@ -14,6 +25,7 @@ function getComputerChoise(){
     }
     return comp_choice
 }
+
 
 function getHumanChoise(){
  let hum_choice = prompt("Please choose rock, paper or scissors!");
@@ -47,12 +59,13 @@ function playGame(){
     }else if(humanScore > computerScore){
         console.log(`GAME OVER! You Win! \nCompueter score: ${computerScore} vs Your score: ${humanScore}`)
     }
-    
+}
     
 
 
     function playRound(h, c){
         /* Write draw as one line first*/
+        let humanScore = 0, computerScore = 0;
         if(h.toLocaleLowerCase() == c.toLocaleLowerCase()){
             console.log('Draw! Both chose', h);
             //hum_choice = getHumanChoise(); //maybe remove this!!!!??????????_________________________________________________________________________________________________
@@ -86,7 +99,7 @@ function playGame(){
             }
         }
     }
-}
+
 
 
 /*
