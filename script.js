@@ -1,8 +1,14 @@
-
+let humanScore = 0, computerScore = 0;
 //playGame()
 const rock = document.querySelector("#rock");
 const paper = document.querySelector("#paper");
 const scissors = document.querySelector("#scissors");
+const score = document.querySelector("#score");
+const output = document.querySelector("#output");
+
+score.textContent= `Your score: ${humanScore} vs computer score: ${computerScore} `;
+
+
 rock.addEventListener( "click",() =>{
     playRound("rock", getComputerChoise())
 });
@@ -25,19 +31,74 @@ function getComputerChoise(){
     }
     return comp_choice
 }
-
-
-function getHumanChoise(){
- let hum_choice = prompt("Please choose rock, paper or scissors!");
-    if(  hum_choice.toLocaleLowerCase() == "rock" || hum_choice.toLocaleLowerCase() == "paper" || hum_choice.toLocaleLowerCase() == "scissors" ){
-        return hum_choice
-        //console.log("You choose: ", hum_choice);
-    }else{
-        console.log("Your choise was invalid. Please enter rock, paper or scissors!");
-        getHumanChoise();
+    
+    function playRound(h, c){
+        /* Write draw as one line first*/
+        let msg = ""; //output messg instead of consoloe log
+        if(h.toLocaleLowerCase() == c.toLocaleLowerCase()){
+            console.log('Draw! Both chose', h);
+            msg = `Draw! Both chose ${h}`;
+            //hum_choice = getHumanChoise(); //maybe remove this!!!!??????????_________________________________________________________________________________________________
+            //comp_choice = getComputerChoise();
+            //playRound()
+            return
+        }
+        if(h.toLocaleLowerCase() == "rock"){
+            if(c.toLocaleLowerCase() == "paper"){
+                console.log("You lose! Paper beats Rock!");
+                msg = "You lose! Paper beats Rock!";
+                computerScore ++;
+            }else if(c.toLocaleLowerCase() == "scissors"){
+                console.log("You win! Rock beats Scissors!");
+                msg = "You win! Rock beats Scissors!";
+                humanScore ++;
+            }
+        }else if(h.toLocaleLowerCase() == "paper"){
+            if(c.toLocaleLowerCase() == "scissors"){
+                console.log("You lose! Scissors beats Paper!");
+                msg = "You lose! Scissors beats Paper!";
+                computerScore ++;
+            }else if(c.toLocaleLowerCase() == "rock"){
+                console.log("You win! Paper beats Rock!");
+                msg = "You win! Paper beats Rock!";
+                humanScore ++;
+            }
+        }else{ //h = scissors
+            if(c.toLocaleLowerCase() == "rock"){
+                console.log("You lose! Rock beats Scissors!");
+                msg = "You lose! Rock beats Scissors!";
+                computerScore ++;
+            }else if(c.toLocaleLowerCase() == "paper"){
+                console.log("You win! Scissors beats Paper!");
+                msg = "You win! Scissors beats Paper!";
+                humanScore ++;
+            }
+        }
+        score.textContent= `Your score: ${humanScore} vs computer score: ${computerScore} `;
+        output.textContent = msg;
     }
-    return hum_choice
+
+
+
+/*
+    else if(h.toLocaleLowerCase() == "rock" && c.toLocaleLowerCase() == "paper"){
+        console.log("You lose! Paper beats Rock!");
+        computerScore ++;
+*/
+
+/* OLD Code BELOW */
+function getHumanChoise(){
+    let hum_choice = prompt("Please choose rock, paper or scissors!");
+       if(  hum_choice.toLocaleLowerCase() == "rock" || hum_choice.toLocaleLowerCase() == "paper" || hum_choice.toLocaleLowerCase() == "scissors" ){
+           return hum_choice
+           //console.log("You choose: ", hum_choice);
+       }else{
+           console.log("Your choise was invalid. Please enter rock, paper or scissors!");
+           getHumanChoise();
+       }
+       return hum_choice
 }
+
 
 function playGame(){
     let humanScore = 0, computerScore = 0;
@@ -60,50 +121,3 @@ function playGame(){
         console.log(`GAME OVER! You Win! \nCompueter score: ${computerScore} vs Your score: ${humanScore}`)
     }
 }
-    
-
-
-    function playRound(h, c){
-        /* Write draw as one line first*/
-        let humanScore = 0, computerScore = 0;
-        if(h.toLocaleLowerCase() == c.toLocaleLowerCase()){
-            console.log('Draw! Both chose', h);
-            //hum_choice = getHumanChoise(); //maybe remove this!!!!??????????_________________________________________________________________________________________________
-            //comp_choice = getComputerChoise();
-            //playRound()
-            return
-        }
-        if(h.toLocaleLowerCase() == "rock"){
-            if(c.toLocaleLowerCase() == "paper"){
-                console.log("You lose! Paper beats Rock!");
-                computerScore ++;
-            }else if(c.toLocaleLowerCase() == "scissors"){
-                console.log("You win! Rock beats Scissors!");
-                humanScore ++;
-            }
-        }else if(h.toLocaleLowerCase() == "paper"){
-            if(c.toLocaleLowerCase() == "scissors"){
-                console.log("You lose! Scissors beats Paper!");
-                computerScore ++;
-            }else if(c.toLocaleLowerCase() == "rock"){
-                console.log("You win! Paper beats Rock!");
-                humanScore ++;
-            }
-        }else{ //h = scissors
-            if(c.toLocaleLowerCase() == "rock"){
-                console.log("You lose! Rock beats Scissors!");
-                computerScore ++;
-            }else if(c.toLocaleLowerCase() == "paper"){
-                console.log("You win! Scissors beats Paper!");
-                humanScore ++;
-            }
-        }
-    }
-
-
-
-/*
-    else if(h.toLocaleLowerCase() == "rock" && c.toLocaleLowerCase() == "paper"){
-        console.log("You lose! Paper beats Rock!");
-        computerScore ++;
-*/
