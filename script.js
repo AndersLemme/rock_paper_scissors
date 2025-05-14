@@ -37,10 +37,7 @@ function getComputerChoise(){
         let msg = ""; //output messg instead of consoloe log
         if(h.toLocaleLowerCase() == c.toLocaleLowerCase()){
             console.log('Draw! Both chose', h);
-            msg = `Draw! Both chose ${h}`;
-            //hum_choice = getHumanChoise(); //maybe remove this!!!!??????????_________________________________________________________________________________________________
-            //comp_choice = getComputerChoise();
-            //playRound()
+            output.textContent = `Draw! Both chose ${h}`;
             return
         }
         if(h.toLocaleLowerCase() == "rock"){
@@ -74,6 +71,14 @@ function getComputerChoise(){
                 humanScore ++;
             }
         }
+        if(humanScore == 5){
+            msg = `GAME OVER! You Win! \nCompueter score: ${computerScore} vs Your score: ${humanScore}`;
+            humanScore = computerScore = 0;
+        }
+        if(computerScore == 5){
+            msg = `GAME OVER! You lose! \nCompueter score: ${computerScore} vs Your score: ${humanScore}`;
+            humanScore = computerScore = 0;
+        }
         score.textContent= `Your score: ${humanScore} vs computer score: ${computerScore} `;
         output.textContent = msg;
     }
@@ -86,7 +91,7 @@ function getComputerChoise(){
         computerScore ++;
 */
 
-/* OLD Code BELOW */
+/* --------------- OLD Code BELOW -------------*/
 function getHumanChoise(){
     let hum_choice = prompt("Please choose rock, paper or scissors!");
        if(  hum_choice.toLocaleLowerCase() == "rock" || hum_choice.toLocaleLowerCase() == "paper" || hum_choice.toLocaleLowerCase() == "scissors" ){
