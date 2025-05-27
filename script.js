@@ -7,6 +7,7 @@ const score = document.querySelector("#score");
 const output = document.querySelector("#output");
 
 score.textContent= `Your score: ${humanScore} vs computer score: ${computerScore} `;
+output.textContent = ' ';
 
 
 rock.addEventListener( "click",() =>{
@@ -37,6 +38,7 @@ function getComputerChoise(){
         let msg = ""; //output messg instead of consoloe log
         if(h.toLocaleLowerCase() == c.toLocaleLowerCase()){
             console.log('Draw! Both chose', h);
+            output.style.cssText = "color: white";
             output.textContent = `Draw! Both chose ${h}`;
             return
         }
@@ -71,14 +73,18 @@ function getComputerChoise(){
                 humanScore ++;
             }
         }
+        output.style.cssText = "color: white";
         if(humanScore == 5){
             msg = `GAME OVER! You Win! \nCompueter score: ${computerScore} vs Your score: ${humanScore}`;
+            output.style.cssText = "color: lightgreen";
             humanScore = computerScore = 0;
         }
         if(computerScore == 5){
             msg = `GAME OVER! You lose! \nCompueter score: ${computerScore} vs Your score: ${humanScore}`;
+            output.style.cssText = "color: salmon";
             humanScore = computerScore = 0;
         }
+
         score.textContent= `Your score: ${humanScore} vs computer score: ${computerScore} `;
         output.textContent = msg;
     }
